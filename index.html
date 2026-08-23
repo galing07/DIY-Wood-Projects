@@ -2,243 +2,453 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>DIY Wood Projects | Furniture, Decor, Garden & Beginner Ideas</title>
 
 <meta name="description"
-content="Browse DIY wood projects for indoor furniture, kitchen storage, organization, decor, garden, kids, pets and beginner woodworking.">
+content="Browse DIY wood projects for furniture, storage, decor, garden, kitchen, kids, pets and beginner woodworking ideas.">
 
-<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 
-<!-- GANTI DENGAN DOMAIN VERCEL / DOMAIN SENDIRI -->
+<meta name="theme-color" content="#302820">
+
+<!-- REPLACE WITH YOUR REAL DOMAIN -->
 <link rel="canonical" href="https://YOUR-DOMAIN.com/">
 
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="DIY Wood Projects | Furniture, Decor, Garden & Beginner Ideas">
+<meta property="og:description"
+content="Explore practical DIY wood projects for furniture, organization, kitchen, decor, garden, kids, pets and beginner woodworking.">
+<meta property="og:url" content="https://YOUR-DOMAIN.com/">
+<meta property="og:site_name" content="DIY Wood Projects">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DIY Wood Projects">
+<meta name="twitter:description"
+content="DIY woodworking projects for furniture, storage, decor, garden and beginners.">
+
 <style>
-*{
-  box-sizing:border-box;
+
+* {
+  box-sizing: border-box;
 }
 
-html{
-  scroll-behavior:smooth;
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-  margin:0;
-  background:#faf8f4;
-  color:#2b2926;
-  font:16px/1.75 Arial,sans-serif;
+body {
+  margin: 0;
+  background: #faf8f4;
+  color: #2b2926;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
 }
 
-a{
-  color:#76502d;
+a {
+  color: #76502d;
 }
 
-.hero{
+a:focus-visible {
+  outline: 3px solid #d89b48;
+  outline-offset: 3px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
   background:
-    linear-gradient(rgba(48,40,32,.78),rgba(48,40,32,.78)),
+    linear-gradient(
+      rgba(48,40,32,.80),
+      rgba(48,40,32,.80)
+    ),
     url("https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1800&q=80")
-    center/cover;
+    center / cover no-repeat;
 
-  color:white;
-  padding:80px 20px;
-  text-align:center;
+  color: #fff;
+  padding: 90px 20px;
+  text-align: center;
 }
 
-.hero h1{
-  font-size:clamp(34px,6vw,58px);
-  line-height:1.1;
-  margin:0 auto;
-  max-width:900px;
+.hero h1 {
+  font-size: clamp(34px, 6vw, 58px);
+  line-height: 1.1;
+  margin: 0 auto;
+  max-width: 950px;
 }
 
-.hero p{
-  max-width:760px;
-  margin:18px auto;
-  color:#e8e2db;
-  font-size:18px;
+.hero p {
+  max-width: 780px;
+  margin: 20px auto 0;
+  color: #e8e2db;
+  font-size: 18px;
 }
 
-.wrap{
-  max-width:1150px;
-  margin:auto;
-  padding:25px 20px;
+/* =========================
+   LAYOUT
+========================= */
+
+.wrap {
+  max-width: 1150px;
+  margin: auto;
+  padding: 30px 20px;
 }
 
-.article{
-  background:#fff;
-  border:1px solid #e6dfd6;
-  border-radius:15px;
-  padding:35px;
+.article {
+  background: #fff;
+  border: 1px solid #e6dfd6;
+  border-radius: 15px;
+  padding: 35px;
 }
 
-.section{
-  margin:55px 0;
+.section {
+  margin: 60px 0;
 }
 
-.section h2{
-  font-size:32px;
-  line-height:1.25;
-  margin-bottom:22px;
+.section h2 {
+  font-size: 32px;
+  line-height: 1.25;
+  margin: 0 0 22px;
 }
 
-.ad{
-  text-align:center;
-  margin:30px auto;
-  clear:both;
+/* =========================
+   ADS
+========================= */
+
+.ad {
+  text-align: center;
+  margin: 35px auto;
+  clear: both;
+  min-height: 50px;
 }
 
-.ad small{
-  display:block;
-  color:#999;
-  font-size:10px;
-  letter-spacing:1px;
-  margin-bottom:5px;
+.ad small {
+  display: block;
+  color: #999;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
 }
 
-.banner{
-  width:320px;
-  min-height:50px;
+/* =========================
+   CATEGORY NAV
+========================= */
+
+.category-nav {
+  background: #f7f3ed;
+  border: 1px solid #e6dfd6;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 35px 0;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
+.category-nav strong {
+  display: block;
+  margin-bottom: 12px;
 }
 
-.card{
-  background:#fff;
-  border:1px solid #e6dfd6;
-  border-radius:12px;
-  padding:22px;
-  transition:transform .2s,box-shadow .2s;
+.category-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 25px;
+  margin: 0;
+  padding-left: 20px;
 }
 
-.card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 8px 25px rgba(0,0,0,.08);
+.category-nav a {
+  text-decoration: none;
 }
 
-.card h3{
-  margin:8px 0;
-  line-height:1.35;
+.category-nav a:hover {
+  text-decoration: underline;
 }
 
-.card p{
-  color:#666;
-  font-size:14px;
+/* =========================
+   PROJECT GRID
+========================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
-.card a{
-  display:inline-block;
-  margin-top:8px;
-  font-weight:bold;
-  text-decoration:none;
+.card {
+  background: #fff;
+  border: 1px solid #e6dfd6;
+  border-radius: 12px;
+  padding: 22px;
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+
+  display: flex;
+  flex-direction: column;
 }
 
-.icon{
-  font-size:30px;
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,.08);
 }
 
-.box{
-  background:#f2e6d7;
-  padding:22px;
-  border-radius:12px;
-  margin:30px 0;
+.card h3 {
+  margin: 8px 0;
+  line-height: 1.35;
+  font-size: 20px;
 }
 
-.cta{
-  background:#302820;
-  color:#fff;
-  padding:32px;
-  border-radius:14px;
-  margin:45px 0;
+.card p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 5px;
 }
 
-.cta h2{
-  margin-top:0;
+.card a {
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 12px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.cta p{
-  color:#e8e2db;
+.card a:hover {
+  text-decoration: underline;
 }
 
-.cta a{
-  display:inline-block;
-  background:#d89b48;
-  color:#fff;
-  padding:12px 20px;
-  border-radius:7px;
-  text-decoration:none;
-  font-weight:bold;
+.icon {
+  font-size: 30px;
+  line-height: 1;
 }
 
-.category-nav{
-  background:#f7f3ed;
-  border:1px solid #e6dfd6;
-  border-radius:12px;
-  padding:25px;
-  margin:35px 0;
+/* =========================
+   INFO BOX
+========================= */
+
+.box {
+  background: #f2e6d7;
+  padding: 22px;
+  border-radius: 12px;
+  margin: 30px 0;
 }
 
-.category-nav ul{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px 25px;
-  margin:0;
-  padding-left:20px;
+/* =========================
+   CTA
+========================= */
+
+.cta {
+  background: #302820;
+  color: #fff;
+  padding: 32px;
+  border-radius: 14px;
+  margin: 50px 0;
 }
 
-.disclaimer{
-  color:#777;
-  font-size:12px;
-  margin:35px 0;
+.cta h2 {
+  margin-top: 0;
 }
 
-@media(max-width:900px){
+.cta p {
+  color: #e8e2db;
+}
 
-  .grid{
-    grid-template-columns:repeat(2,1fr);
+.cta a {
+  display: inline-block;
+  background: #d89b48;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cta a:hover {
+  background: #bd7f35;
+}
+
+/* =========================
+   DISCLAIMER
+========================= */
+
+.disclaimer {
+  color: #777;
+  font-size: 12px;
+  margin: 35px 0;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+  background: #302820;
+  color: #dcd4ca;
+  text-align: center;
+  padding: 35px 20px;
+  margin-top: 50px;
+}
+
+.site-footer p {
+  margin: 5px 0;
+  font-size: 13px;
+}
+
+.site-footer a {
+  color: #e8c28e;
+  text-decoration: none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
 }
 
-@media(max-width:560px){
+@media (max-width: 560px) {
 
-  .grid{
-    grid-template-columns:1fr;
+  .grid {
+    grid-template-columns: 1fr;
   }
 
-  .article{
-    padding:22px;
+  .article {
+    padding: 22px;
   }
 
-  .hero{
-    padding:65px 18px;
+  .hero {
+    padding: 65px 18px;
   }
 
-  .hero p{
-    font-size:16px;
+  .hero p {
+    font-size: 16px;
+  }
+
+  .section h2 {
+    font-size: 27px;
+  }
+
+  .category-nav ul {
+    display: block;
+  }
+
+  .category-nav li {
+    margin-bottom: 8px;
   }
 
 }
+
 </style>
 
-<!-- SOCIAL BAR -->
-<script src="https://bagelstoppage.com/fc/d6/6e/fcd66e4784ae16bfd633c8cdd39c918f.js"></script>
+<!-- =========================
+     WEBSITE SCHEMA
+========================= -->
 
-<!-- POPUNDER -->
-<script src="https://bagelstoppage.com/76/e9/6a/76e96afa1f0b5ec344fd71008dc3ae27.js"></script>
-
-<!-- WEBSITE / ARTICLE SCHEMA -->
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"CollectionPage",
-  "name":"DIY Wood Projects",
-  "description":"DIY woodworking projects for furniture, organization, decor, garden, kids, pets and beginners.",
-  "url":"https://YOUR-DOMAIN.com/"
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "DIY Wood Projects",
+  "url": "https://YOUR-DOMAIN.com/"
+}
+</script>
+
+<!-- =========================
+     COLLECTION PAGE SCHEMA
+========================= -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "DIY Wood Projects",
+  "description": "DIY woodworking projects for furniture, organization, decor, garden, kids, pets and beginners.",
+  "url": "https://YOUR-DOMAIN.com/"
+}
+</script>
+
+<!-- =========================
+     ITEM LIST SCHEMA
+========================= -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "DIY Wood Projects",
+  "numberOfItems": 32,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "DIY Floating Shelf",
+      "url": "https://YOUR-DOMAIN.com/diy-floating-shelf.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "DIY Simple Bookshelf",
+      "url": "https://YOUR-DOMAIN.com/diy-simple-bookshelf.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "DIY Wooden Bench",
+      "url": "https://YOUR-DOMAIN.com/diy-wooden-bench.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "DIY Wooden Nightstand",
+      "url": "https://YOUR-DOMAIN.com/diy-wooden-nightstand.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "DIY Wooden Coffee Table",
+      "url": "https://YOUR-DOMAIN.com/diy-wooden-coffee-table.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "DIY Wooden Side Table",
+      "url": "https://YOUR-DOMAIN.com/diy-wooden-side-table.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "name": "DIY Wooden Spice Rack",
+      "url": "https://YOUR-DOMAIN.com/diy-wooden-spice-rack.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "name": "DIY Wooden Kitchen Shelf",
+      "url": "https://YOUR-DOMAIN.com/diy-wooden-kitchen-shelf.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "name": "DIY Wooden Pantry Shelf",
+      "url": "https://YOUR-DOMAIN.com/diy-wooden-pantry-shelf.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "name": "DIY Wooden Towel Rack",
+      "url": "https://YOUR-DOMAIN.com/diy-wooden-towel-rack.html"
+    }
+  ]
 }
 </script>
 
@@ -246,672 +456,868 @@ a{
 
 <body>
 
+<!-- =========================
+     HERO
+========================= -->
+
 <header class="hero">
 
-<h1>
-DIY Wood Projects for Every Home
-</h1>
+  <h1>
+    DIY Wood Projects for Every Home
+  </h1>
 
-<p>
-Furniture, organization, kitchen, decor, outdoor, kids, pets,
-scrap wood and beginner woodworking projects.
-</p>
+  <p>
+    Furniture, organization, kitchen, decor, outdoor,
+    kids, pets, scrap wood and beginner woodworking projects.
+  </p>
 
 </header>
 
 
 <main class="wrap">
 
+<article class="article">
 
-<!-- NATIVE BANNER -->
+  <h2>
+    Wood Projects Collection
+  </h2>
 
-<div class="ad">
+  <p>
+    Welcome to our collection of DIY wood projects. Browse practical
+    woodworking ideas for furniture, storage, kitchen organization,
+    home decor, outdoor spaces, kids, pets and beginner projects.
+  </p>
 
-<small>Advertisement</small>
-
-<script
-async="async"
-data-cfasync="false"
-src="https://bagelstoppage.com/1c1323bb57eb130f744594bfd85cec53/invoke.js">
-</script>
-
-<div id="container-1c1323bb57eb130f744594bfd85cec53"></div>
-
-</div>
-
-
-<section class="article">
+  <p>
+    Each project includes useful information about materials,
+    tools, construction steps, finishing ideas, safety considerations,
+    FAQs and related woodworking projects.
+  </p>
 
 
-<h2>
-Wood Projects Collection
-</h2>
+  <!-- =========================
+       CATEGORY NAVIGATION
+  ========================= -->
 
-<p>
-Welcome to our collection of DIY wood projects. Browse practical
-woodworking ideas for furniture, storage, kitchen organization,
-home decor, outdoor spaces, kids, pets and beginner projects.
-</p>
+  <nav class="category-nav" aria-label="Wood project categories">
 
-<p>
-Every project below links to a dedicated article containing materials,
-tools, step-by-step instructions, finishing ideas, safety information,
-FAQs and related woodworking projects.
-</p>
+    <strong>Browse Categories</strong>
 
+    <ul>
 
-<!-- CATEGORY NAVIGATION -->
+      <li>
+        <a href="#indoor">Indoor Furniture</a>
+      </li>
 
-<nav class="category-nav">
+      <li>
+        <a href="#kitchen">Kitchen & Bathroom</a>
+      </li>
 
-<strong>Browse Categories</strong>
+      <li>
+        <a href="#organization">Organization</a>
+      </li>
 
-<ul>
+      <li>
+        <a href="#decor">Decor</a>
+      </li>
 
-<li><a href="#indoor">Indoor Furniture</a></li>
+      <li>
+        <a href="#garden">Garden & Outdoor</a>
+      </li>
 
-<li><a href="#kitchen">Kitchen & Bathroom</a></li>
+      <li>
+        <a href="#kids">Kids & Pets</a>
+      </li>
 
-<li><a href="#organization">Organization</a></li>
+      <li>
+        <a href="#beginner">Beginner Projects</a>
+      </li>
 
-<li><a href="#decor">Decor</a></li>
+    </ul>
 
-<li><a href="#garden">Garden & Outdoor</a></li>
-
-<li><a href="#kids">Kids & Pets</a></li>
-
-<li><a href="#beginner">Beginner Projects</a></li>
-
-</ul>
-
-</nav>
-
-
-<!-- 320x50 BANNER -->
-
-<div class="ad">
-
-<small>Advertisement</small>
-
-<script>
-atOptions = {
-  'key' : '4b492e00bf0e2df196051d453a73b6ab',
-  'format' : 'iframe',
-  'height' : 50,
-  'width' : 320,
-  'params' : {}
-};
-</script>
-
-<script src="https://bagelstoppage.com/4b492e00bf0e2df196051d453a73b6ab/invoke.js"></script>
-
-</div>
+  </nav>
 
 
-<!-- ========================= -->
-<!-- INDOOR FURNITURE -->
-<!-- ========================= -->
+  <!-- =========================
+       ADVERTISEMENT SLOT
+  ========================= -->
 
-<section class="section" id="indoor">
+  <div class="ad" aria-label="Advertisement">
 
-<h2>
-Indoor Furniture
-</h2>
+    <small>Advertisement</small>
 
-<div class="grid">
+    <!-- INSERT YOUR AD NETWORK CODE HERE -->
+
+  </div>
 
 
-<article class="card">
-<div class="icon">🪵</div>
-<h3>DIY Floating Shelf</h3>
-<p>Build a clean floating shelf for books, plants, photos and everyday decor.</p>
-<a href="/diy-floating-shelf.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">View Project →</a>
+  <!-- =========================
+       INDOOR FURNITURE
+  ========================= -->
+
+  <section class="section" id="indoor">
+
+    <h2>
+      Indoor Furniture
+    </h2>
+
+    <div class="grid">
+
+      <article class="card">
+
+        <div class="icon">🪵</div>
+
+        <h3>DIY Floating Shelf</h3>
+
+        <p>
+          Build a clean floating shelf for books, plants,
+          photos and everyday decor.
+        </p>
+
+        <a href="/diy-floating-shelf.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">
+          View Project →
+        </a>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="icon">📚</div>
+
+        <h3>DIY Simple Bookshelf</h3>
+
+        <p>
+          Create a practical beginner-friendly bookshelf
+          with a simple design.
+        </p>
+
+        <a href="/diy-simple-bookshelf.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">
+          View Project →
+        </a>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="icon">🪑</div>
+
+        <h3>DIY Wooden Bench</h3>
+
+        <p>
+          Make a versatile wooden bench for an entryway,
+          bedroom or covered patio.
+        </p>
+
+        <a href="/diy-wooden-bench.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">
+          View Project →
+        </a>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="icon">🛏️</div>
+
+        <h3>DIY Wooden Nightstand</h3>
+
+        <p>
+          Create a compact bedside table with useful storage.
+        </p>
+
+        <a href="/diy-wooden-nightstand.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">
+          View Project →
+        </a>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="icon">☕</div>
+
+        <h3>DIY Wooden Coffee Table</h3>
+
+        <p>
+          Build a simple wooden coffee table for your living room.
+        </p>
+
+        <a href="/diy-wooden-coffee-table.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">
+          View Project →
+        </a>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="icon">🪵</div>
+
+        <h3>DIY Wooden Side Table</h3>
+
+        <p>
+          Make a compact side table for a sofa, chair or bedroom.
+        </p>
+
+        <a href="/diy-wooden-side-table.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">
+          View Project →
+        </a>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       KITCHEN
+  ========================= -->
+
+  <section class="section" id="kitchen">
+
+    <h2>
+      Kitchen & Bathroom
+    </h2>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="icon">🌶️</div>
+
+        <h3>DIY Wooden Spice Rack</h3>
+
+        <p>
+          Organize spices with a compact wooden rack.
+        </p>
+
+        <a href="/diy-wooden-spice-rack.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🍽️</div>
+
+        <h3>DIY Wooden Kitchen Shelf</h3>
+
+        <p>
+          Add open storage for dishes, jars and kitchen accessories.
+        </p>
+
+        <a href="/diy-wooden-kitchen-shelf.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🥫</div>
+
+        <h3>DIY Wooden Pantry Shelf</h3>
+
+        <p>
+          Make better use of vertical pantry storage.
+        </p>
+
+        <a href="/diy-wooden-pantry-shelf.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🧺</div>
+
+        <h3>DIY Wooden Towel Rack</h3>
+
+        <p>
+          Build a practical towel rack for a bathroom or laundry area.
+        </p>
+
+        <a href="/diy-wooden-towel-rack.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🥄</div>
+
+        <h3>DIY Wooden Utensil Organizer</h3>
+
+        <p>
+          Organize cooking utensils and kitchen tools.
+        </p>
+
+        <a href="/diy-wooden-utensil-organizer.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🛁</div>
+
+        <h3>DIY Wooden Bathroom Shelf</h3>
+
+        <p>
+          Add useful storage for toiletries and bathroom accessories.
+        </p>
+
+        <a href="/diy-wooden-bathroom-shelf.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">
+          View Project →
+        </a>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ORGANIZATION
+  ========================= -->
+
+  <section class="section" id="organization">
+
+    <h2>
+      Organization
+    </h2>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="icon">🔑</div>
+
+        <h3>DIY Wooden Key Holder</h3>
+
+        <p>
+          Keep keys organized with a simple entryway key holder.
+        </p>
+
+        <a href="/diy-wooden-key-holder.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">📬</div>
+
+        <h3>DIY Wooden Mail Organizer</h3>
+
+        <p>
+          Organize letters, bills and everyday mail.
+        </p>
+
+        <a href="/diy-wooden-mail-organizer.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🖊️</div>
+
+        <h3>DIY Wooden Desk Organizer</h3>
+
+        <p>
+          Organize pens, notebooks, cables and office supplies.
+        </p>
+
+        <a href="/diy-wooden-desk-organizer.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">👕</div>
+
+        <h3>DIY Wooden Closet Organizer</h3>
+
+        <p>
+          Create useful shelves and compartments inside your closet.
+        </p>
+
+        <a href="/diy-wooden-closet-organizer.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">👟</div>
+
+        <h3>DIY Wooden Shoe Rack</h3>
+
+        <p>
+          Build an easy shoe rack for an entryway or bedroom.
+        </p>
+
+        <a href="/diy-wooden-shoe-rack.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">📦</div>
+
+        <h3>DIY Wooden Storage Box</h3>
+
+        <p>
+          Make a useful box for blankets, toys, tools or accessories.
+        </p>
+
+        <a href="/diy-wooden-storage-box.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">
+          View Project →
+        </a>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       DECOR
+  ========================= -->
+
+  <section class="section" id="decor">
+
+    <h2>
+      DIY Wooden Home Decor
+    </h2>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="icon">🖼️</div>
+
+        <h3>DIY Wooden Picture Frame</h3>
+
+        <p>
+          Create a custom frame for family photos, art or prints.
+        </p>
+
+        <a href="/diy-wooden-picture-frame.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🎨</div>
+
+        <h3>DIY Wooden Wall Art</h3>
+
+        <p>
+          Turn simple boards into attractive wall art.
+        </p>
+
+        <a href="/diy-wooden-wall-art.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🕐</div>
+
+        <h3>DIY Wooden Clock</h3>
+
+        <p>
+          Build a unique wooden clock that combines decor and function.
+        </p>
+
+        <a href="/diy-wooden-clock.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🪞</div>
+
+        <h3>DIY Wooden Mirror Frame</h3>
+
+        <p>
+          Give a basic mirror a custom wooden frame.
+        </p>
+
+        <a href="/diy-wooden-mirror-frame.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🪴</div>
+
+        <h3>DIY Wooden Plant Stand</h3>
+
+        <p>
+          Display indoor plants with a handmade wooden stand.
+        </p>
+
+        <a href="/diy-wooden-plant-stand.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🕯️</div>
+
+        <h3>DIY Wooden Candle Holder</h3>
+
+        <p>
+          A small beginner-friendly project for natural home decor.
+        </p>
+
+        <a href="/diy-wooden-candle-holder.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">
+          View Project →
+        </a>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       GARDEN
+  ========================= -->
+
+  <section class="section" id="garden">
+
+    <h2>
+      Garden & Outdoor
+    </h2>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="icon">🌳</div>
+
+        <h3>DIY Wooden Garden Bench</h3>
+
+        <p>
+          Create a comfortable bench for a garden or backyard.
+        </p>
+
+        <a href="/diy-wooden-garden-bench.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🌱</div>
+
+        <h3>DIY Wooden Raised Garden Bed</h3>
+
+        <p>
+          Build a raised bed for vegetables, herbs and flowers.
+        </p>
+
+        <a href="/diy-wooden-raised-garden-bed.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🌿</div>
+
+        <h3>DIY Wooden Trellis</h3>
+
+        <p>
+          Support climbing plants with a simple wooden trellis.
+        </p>
+
+        <a href="/diy-wooden-trellis.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🐦</div>
+
+        <h3>DIY Wooden Birdhouse</h3>
+
+        <p>
+          Make a simple wooden birdhouse for your backyard.
+        </p>
+
+        <a href="/diy-wooden-birdhouse.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🪴</div>
+
+        <h3>DIY Wooden Planter Box</h3>
+
+        <p>
+          Build an attractive planter box for flowers and herbs.
+        </p>
+
+        <a href="/diy-wooden-planter-box.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">☀️</div>
+
+        <h3>DIY Wooden Outdoor Table</h3>
+
+        <p>
+          Create a practical table for a patio or backyard.
+        </p>
+
+        <a href="/diy-wooden-outdoor-table.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">
+          View Project →
+        </a>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       KIDS & PETS
+  ========================= -->
+
+  <section class="section" id="kids">
+
+    <h2>
+      Kids & Pets
+    </h2>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="icon">🧸</div>
+
+        <h3>DIY Wooden Toy Box</h3>
+
+        <p>
+          Build a sturdy toy box to help organize a child's room.
+        </p>
+
+        <a href="/diy-wooden-toy-box.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kids-pets">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🧱</div>
+
+        <h3>DIY Lego Table</h3>
+
+        <p>
+          Create a dedicated LEGO building table with storage.
+        </p>
+
+        <a href="/diy-lego-table.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kids-pets">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🐕</div>
+
+        <h3>DIY Wooden Pet Bed</h3>
+
+        <p>
+          Build a simple wooden bed for a dog or cat.
+        </p>
+
+        <a href="/diy-wooden-pet-bed.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kids-pets">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🥣</div>
+
+        <h3>DIY Wooden Dog Bowl Stand</h3>
+
+        <p>
+          Create a custom wooden feeding station for a dog.
+        </p>
+
+        <a href="/diy-wooden-dog-bowl-stand.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kids-pets">
+          View Project →
+        </a>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       BEGINNER
+  ========================= -->
+
+  <section class="section" id="beginner">
+
+    <h2>
+      Beginner Woodworking Projects
+    </h2>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="icon">♻️</div>
+
+        <h3>DIY Scrap Wood Projects</h3>
+
+        <p>
+          Turn leftover boards into useful home accessories
+          and decorations.
+        </p>
+
+        <a href="/diy-scrap-wood-projects.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=beginner">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🪵</div>
+
+        <h3>DIY Pallet Wood Furniture</h3>
+
+        <p>
+          Explore creative furniture ideas using properly
+          prepared pallet wood.
+        </p>
+
+        <a href="/diy-pallet-wood-furniture.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=beginner">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">🔨</div>
+
+        <h3>DIY Beginner Wood Projects</h3>
+
+        <p>
+          Start woodworking with simple projects that
+          teach essential skills.
+        </p>
+
+        <a href="/diy-beginner-wood-projects.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=beginner">
+          View Project →
+        </a>
+      </article>
+
+
+      <article class="card">
+        <div class="icon">📅</div>
+
+        <h3>Easy Weekend Woodworking Projects</h3>
+
+        <p>
+          Choose straightforward projects that fit
+          into a free weekend.
+        </p>
+
+        <a href="/easy-weekend-woodworking-projects.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=beginner">
+          View Project →
+        </a>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       RECOMMENDED TOOLS
+  ========================= -->
+
+  <section class="cta">
+
+    <h2>
+      Recommended Woodworking Tools
+    </h2>
+
+    <p>
+      Having the right measuring, cutting, drilling, sanding
+      and finishing tools can make DIY woodworking projects
+      easier and more consistent.
+    </p>
+
+    <!-- REPLACE WITH YOUR REAL AFFILIATE URL -->
+
+    <a
+      href="https://YOUR-AFFILIATE-LINK.com/tools"
+      target="_blank"
+      rel="nofollow sponsored noopener">
+      Browse Recommended Tools →
+    </a>
+
+  </section>
+
+
+  <!-- =========================
+       DISCLAIMER
+  ========================= -->
+
+  <p class="disclaimer">
+
+    <strong>Affiliate Disclosure:</strong>
+    This website may contain affiliate links. We may earn
+    a commission from qualifying purchases.
+
+    DIY woodworking involves tools and materials that can
+    cause injury if used incorrectly. Always follow
+    manufacturer instructions and use appropriate safety equipment.
+
+  </p>
+
 </article>
-
-
-<article class="card">
-<div class="icon">📚</div>
-<h3>DIY Simple Bookshelf</h3>
-<p>Create a practical beginner-friendly bookshelf with a simple design.</p>
-<a href="/diy-simple-bookshelf.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🪑</div>
-<h3>DIY Wooden Bench</h3>
-<p>Make a versatile wooden bench for an entryway, bedroom or covered patio.</p>
-<a href="/diy-wooden-bench.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🛏️</div>
-<h3>DIY Wooden Nightstand</h3>
-<p>Create a compact bedside table with useful storage.</p>
-<a href="/diy-wooden-nightstand.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">☕</div>
-<h3>DIY Wooden Coffee Table</h3>
-<p>Build a simple wooden coffee table for your living room.</p>
-<a href="/diy-wooden-coffee-table.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🪵</div>
-<h3>DIY Wooden Side Table</h3>
-<p>Make a compact side table for a sofa, chair or bedroom.</p>
-<a href="/diy-wooden-side-table.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=indoor">View Project →</a>
-</article>
-
-
-</div>
-
-</section>
-
-
-<!-- ========================= -->
-<!-- KITCHEN -->
-<!-- ========================= -->
-
-<section class="section" id="kitchen">
-
-<h2>
-Kitchen & Bathroom
-</h2>
-
-<div class="grid">
-
-
-<article class="card">
-<div class="icon">🌶️</div>
-<h3>DIY Wooden Spice Rack</h3>
-<p>Organize spices with a compact wooden rack.</p>
-<a href="/diy-wooden-spice-rack.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🍽️</div>
-<h3>DIY Wooden Kitchen Shelf</h3>
-<p>Add open storage for dishes, jars and kitchen accessories.</p>
-<a href="/diy-wooden-kitchen-shelf.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🥫</div>
-<h3>DIY Wooden Pantry Shelf</h3>
-<p>Make better use of vertical pantry storage.</p>
-<a href="/diy-wooden-pantry-shelf.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🧺</div>
-<h3>DIY Wooden Towel Rack</h3>
-<p>Build a practical towel rack for a bathroom or laundry area.</p>
-<a href="/diy-wooden-towel-rack.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🥄</div>
-<h3>DIY Wooden Utensil Organizer</h3>
-<p>Organize cooking utensils and kitchen tools.</p>
-<a href="/diy-wooden-utensil-organizer.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🛁</div>
-<h3>DIY Wooden Bathroom Shelf</h3>
-<p>Add useful storage for toiletries and bathroom accessories.</p>
-<a href="/diy-wooden-bathroom-shelf.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kitchen">View Project →</a>
-</article>
-
-
-</div>
-
-</section>
-
-
-<!-- NATIVE BANNER -->
-
-<div class="ad">
-
-<small>Advertisement</small>
-
-<script
-async="async"
-data-cfasync="false"
-src="https://bagelstoppage.com/1c1323bb57eb130f744594bfd85cec53/invoke.js">
-</script>
-
-<div id="container-1c1323bb57eb130f744594bfd85cec53"></div>
-
-</div>
-
-
-<!-- ========================= -->
-<!-- ORGANIZATION -->
-<!-- ========================= -->
-
-<section class="section" id="organization">
-
-<h2>
-Organization
-</h2>
-
-<div class="grid">
-
-
-<article class="card">
-<div class="icon">🔑</div>
-<h3>DIY Wooden Key Holder</h3>
-<p>Keep keys organized with a simple entryway key holder.</p>
-<a href="/diy-wooden-key-holder.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">📬</div>
-<h3>DIY Wooden Mail Organizer</h3>
-<p>Organize letters, bills and everyday mail.</p>
-<a href="/diy-wooden-mail-organizer.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🖊️</div>
-<h3>DIY Wooden Desk Organizer</h3>
-<p>Organize pens, notebooks, cables and office supplies.</p>
-<a href="/diy-wooden-desk-organizer.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">👕</div>
-<h3>DIY Wooden Closet Organizer</h3>
-<p>Create useful shelves and compartments inside your closet.</p>
-<a href="/diy-wooden-closet-organizer.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">👟</div>
-<h3>DIY Wooden Shoe Rack</h3>
-<p>Build an easy shoe rack for an entryway or bedroom.</p>
-<a href="/diy-wooden-shoe-rack.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">📦</div>
-<h3>DIY Wooden Storage Box</h3>
-<p>Make a useful box for blankets, toys, tools or accessories.</p>
-<a href="/diy-wooden-storage-box.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=organization">View Project →</a>
-</article>
-
-
-</div>
-
-</section>
-
-
-<!-- 320x50 -->
-
-<div class="ad">
-
-<small>Advertisement</small>
-
-<script>
-atOptions = {
-  'key' : '4b492e00bf0e2df196051d453a73b6ab',
-  'format' : 'iframe',
-  'height' : 50,
-  'width' : 320,
-  'params' : {}
-};
-</script>
-
-<script src="https://bagelstoppage.com/4b492e00bf0e2df196051d453a73b6ab/invoke.js"></script>
-
-</div>
-
-
-<!-- ========================= -->
-<!-- DECOR -->
-<!-- ========================= -->
-
-<section class="section" id="decor">
-
-<h2>
-DIY Wooden Home Decor
-</h2>
-
-<div class="grid">
-
-
-<article class="card">
-<div class="icon">🖼️</div>
-<h3>DIY Wooden Picture Frame</h3>
-<p>Create a custom frame for family photos, art or prints.</p>
-<a href="/diy-wooden-picture-frame.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🎨</div>
-<h3>DIY Wooden Wall Art</h3>
-<p>Turn simple boards into attractive wall art.</p>
-<a href="/diy-wooden-wall-art.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🕐</div>
-<h3>DIY Wooden Clock</h3>
-<p>Build a unique wooden clock that combines decor and function.</p>
-<a href="/diy-wooden-clock.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🪞</div>
-<h3>DIY Wooden Mirror Frame</h3>
-<p>Give a basic mirror a custom wooden frame.</p>
-<a href="/diy-wooden-mirror-frame.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🪴</div>
-<h3>DIY Wooden Plant Stand</h3>
-<p>Display indoor plants with a handmade wooden stand.</p>
-<a href="/diy-wooden-plant-stand.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🕯️</div>
-<h3>DIY Wooden Candle Holder</h3>
-<p>A small beginner-friendly project for natural home decor.</p>
-<a href="/diy-wooden-candle-holder.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=decor">View Project →</a>
-</article>
-
-
-</div>
-
-</section>
-
-
-<!-- NATIVE BANNER -->
-
-<div class="ad">
-
-<small>Advertisement</small>
-
-<script
-async="async"
-data-cfasync="false"
-src="https://bagelstoppage.com/1c1323bb57eb130f744594bfd85cec53/invoke.js">
-</script>
-
-<div id="container-1c1323bb57eb130f744594bfd85cec53"></div>
-
-</div>
-
-
-<!-- ========================= -->
-<!-- GARDEN -->
-<!-- ========================= -->
-
-<section class="section" id="garden">
-
-<h2>
-Garden & Outdoor
-</h2>
-
-<div class="grid">
-
-
-<article class="card">
-<div class="icon">🌳</div>
-<h3>DIY Wooden Garden Bench</h3>
-<p>Create a comfortable bench for a garden or backyard.</p>
-<a href="/diy-wooden-garden-bench.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🌱</div>
-<h3>DIY Wooden Raised Garden Bed</h3>
-<p>Build a raised bed for vegetables, herbs and flowers.</p>
-<a href="/diy-wooden-raised-garden-bed.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🌿</div>
-<h3>DIY Wooden Trellis</h3>
-<p>Support climbing plants with a simple wooden trellis.</p>
-<a href="/diy-wooden-trellis.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🐦</div>
-<h3>DIY Wooden Birdhouse</h3>
-<p>Make a simple wooden birdhouse for your backyard.</p>
-<a href="/diy-wooden-birdhouse.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🪴</div>
-<h3>DIY Wooden Planter Box</h3>
-<p>Build an attractive planter box for flowers and herbs.</p>
-<a href="/diy-wooden-planter-box.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">☀️</div>
-<h3>DIY Wooden Outdoor Table</h3>
-<p>Create a practical table for a patio or backyard.</p>
-<a href="/diy-wooden-outdoor-table.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=garden">View Project →</a>
-</article>
-
-
-</div>
-
-</section>
-
-
-<!-- ========================= -->
-<!-- KIDS & PETS -->
-<!-- ========================= -->
-
-<section class="section" id="kids">
-
-<h2>
-Kids & Pets
-</h2>
-
-<div class="grid">
-
-
-<article class="card">
-<div class="icon">🧸</div>
-<h3>DIY Wooden Toy Box</h3>
-<p>Build a sturdy toy box to help organize a child's room.</p>
-<a href="/diy-wooden-toy-box.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kids-pets">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🧱</div>
-<h3>DIY Lego Table</h3>
-<p>Create a dedicated LEGO building table with storage.</p>
-<a href="/diy-lego-table.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kids-pets">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🐕</div>
-<h3>DIY Wooden Pet Bed</h3>
-<p>Build a simple wooden bed for a dog or cat.</p>
-<a href="/diy-wooden-pet-bed.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kids-pets">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🥣</div>
-<h3>DIY Wooden Dog Bowl Stand</h3>
-<p>Create a custom wooden feeding station for a dog.</p>
-<a href="/diy-wooden-dog-bowl-stand.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=kids-pets">View Project →</a>
-</article>
-
-
-</div>
-
-</section>
-
-
-<!-- 320x50 -->
-
-<div class="ad">
-
-<small>Advertisement</small>
-
-<script>
-atOptions = {
-  'key' : '4b492e00bf0e2df196051d453a73b6ab',
-  'format' : 'iframe',
-  'height' : 50,
-  'width' : 320,
-  'params' : {}
-};
-</script>
-
-<script src="https://bagelstoppage.com/4b492e00bf0e2df196051d453a73b6ab/invoke.js"></script>
-
-</div>
-
-
-<!-- ========================= -->
-<!-- BEGINNER -->
-<!-- ========================= -->
-
-<section class="section" id="beginner">
-
-<h2>
-Beginner Woodworking Projects
-</h2>
-
-<div class="grid">
-
-
-<article class="card">
-<div class="icon">♻️</div>
-<h3>DIY Scrap Wood Projects</h3>
-<p>Turn leftover boards into useful home accessories and decorations.</p>
-<a href="/diy-scrap-wood-projects.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=beginner">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🪵</div>
-<h3>DIY Pallet Wood Furniture</h3>
-<p>Explore creative furniture ideas using properly prepared pallet wood.</p>
-<a href="/diy-pallet-wood-furniture.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=beginner">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">🔨</div>
-<h3>DIY Beginner Wood Projects</h3>
-<p>Start woodworking with simple projects that teach essential skills.</p>
-<a href="/diy-beginner-wood-projects.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=beginner">View Project →</a>
-</article>
-
-
-<article class="card">
-<div class="icon">📅</div>
-<h3>Easy Weekend Woodworking Projects</h3>
-<p>Choose straightforward projects that fit into a free weekend.</p>
-<a href="/easy-weekend-woodworking-projects.html?utm_source=internal&utm_medium=organic&utm_campaign=wood_projects_2026&utm_content=beginner">View Project →</a>
-</article>
-
-
-</div>
-
-</section>
-
-
-<!-- FINAL NATIVE -->
-
-<div class="ad">
-
-<small>Advertisement</small>
-
-<script
-async="async"
-data-cfasync="false"
-src="https://bagelstoppage.com/1c1323bb57eb130f744594bfd85cec53/invoke.js">
-</script>
-
-<div id="container-1c1323bb57eb130f744594bfd85cec53"></div>
-
-</div>
-
-
-<!-- CTA -->
-
-<div class="cta">
-
-<h2>
-Recommended Woodworking Tools
-</h2>
-
-<p>
-Having the right measuring, cutting, drilling, sanding and finishing
-tools can make DIY woodworking projects easier and more consistent.
-</p>
-
-<a
-href="https://YOUR-AFFILIATE-LINK.com/tools?utm_source=adsterra&utm_medium=paid&utm_campaign=wood_projects_2026&utm_content=pillar"
-target="_blank"
-rel="nofollow sponsored noopener">
-
-Browse Recommended Tools →
-
-</a>
-
-</div>
-
-
-<p class="disclaimer">
-
-<strong>Affiliate Disclosure:</strong>
-This website may contain affiliate links. We may earn a commission
-from qualifying purchases.
-
-DIY woodworking involves tools and materials that can cause injury
-if used incorrectly. Follow manufacturer instructions and use
-appropriate safety equipment.
-
-</p>
-
-
-</section>
 
 </main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="site-footer">
+
+  <p>
+    © 2026 DIY Wood Projects. All rights reserved.
+  </p>
+
+  <p>
+    DIY woodworking ideas, furniture, decor, garden projects
+    and beginner tutorials.
+  </p>
+
+</footer>
+
 
 </body>
 </html>
