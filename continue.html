@@ -1,0 +1,955 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Your Link Is Ready</title>
+
+<meta name="robots"
+      content="noindex,nofollow">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    background: #f7f7f7;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #222;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 100vh;
+}
+
+.boxwrap {
+    width: 100%;
+
+    max-width: 520px;
+
+    padding: 20px;
+}
+
+.card {
+    background: #fff;
+
+    border:
+        1px solid #e5e5e5;
+
+    border-radius: 14px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.06);
+
+    text-align: center;
+}
+
+.title {
+    font-size: 21px;
+
+    font-weight: 700;
+
+    margin:
+        0 0 10px;
+}
+
+.desc {
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin:
+        0 0 20px;
+
+    color: #555;
+}
+
+.btn {
+    display: block;
+
+    width: 100%;
+
+    border: 0;
+
+    text-align: center;
+
+    background: #2b59ff;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    padding: 14px 16px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    margin: 10px 0;
+
+    cursor: pointer;
+
+    transition:
+        opacity .2s ease,
+        transform .1s ease;
+}
+
+.btn:active {
+    transform: scale(.98);
+}
+
+.btn.locked {
+    opacity: .55;
+
+    cursor: not-allowed;
+
+    pointer-events: none;
+}
+
+.btn.ready {
+    opacity: 1;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+}
+
+.note {
+    font-size: 12px;
+
+    color: #666;
+
+    margin-top: 14px;
+
+    line-height: 1.5;
+}
+
+.status {
+    font-size: 12px;
+
+    color: #777;
+
+    margin-top: 8px;
+}
+
+.spinner {
+    display: inline-block;
+
+    width: 13px;
+
+    height: 13px;
+
+    border:
+        2px solid
+        rgba(255,255,255,.4);
+
+    border-top-color: #fff;
+
+    border-radius: 50%;
+
+    animation:
+        spin .8s linear infinite;
+
+    vertical-align: -2px;
+
+    margin-right: 5px;
+}
+
+@keyframes spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="boxwrap">
+
+    <div class="card">
+
+        <p class="title">
+            Your link is ready
+        </p>
+
+        <p class="desc">
+            Please wait a moment and interact
+            with this page before continuing.
+        </p>
+
+
+        <a
+            id="goBtn"
+
+            class="btn locked"
+
+            href="javascript:void(0)"
+
+            data-text-lock="PLEASE WAIT…"
+
+            data-text-ready="CONTINUE"
+
+            rel="nofollow sponsored noopener">
+
+            <span class="spinner"></span>
+            PLEASE WAIT…
+
+        </a>
+
+
+        <p
+            id="status"
+            class="status">
+
+            Checking your browser…
+
+        </p>
+
+
+        <p class="note">
+
+            Please wait a moment, then tap
+            or click Continue.
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+(function () {
+
+    "use strict";
+
+
+    /*
+    =====================================================
+    CONFIGURATION
+    =====================================================
+    */
+
+
+    /*
+     * LINK ADSTERRA ANDA
+     */
+    var ADSTERRA_URL =
+        "https://bagelstoppage.com/yvkm7ciys5?key=55550460b8cbed46647f36c867e5577f";
+
+
+    /*
+     * MINIMUM WAIT
+     *
+     * 2800 = 2.8 detik
+     */
+    var MIN_WAIT_MS = 2800;
+
+
+    /*
+     * MEMERLUKAN INTERAKSI
+     */
+    var REQUIRE_INTERACTION = true;
+
+
+    /*
+     * JANGAN MEMBATASI TOUCH
+     *
+     * Android     = OK
+     * iPhone/iPad = OK
+     * Desktop     = OK
+     */
+    var REQUIRE_TOUCH = false;
+
+
+    /*
+     * ANDROID ONLY
+     *
+     * FALSE = Android + iPhone + Desktop
+     */
+    var ANDROID_ONLY = false;
+
+
+    /*
+     * SOURCE CHECK
+     *
+     * TRUE:
+     * URL harus mempunyai ?src=popads
+     *
+     * FALSE:
+     * URL langsung juga bisa dibuka
+     */
+    var REQUIRE_SRC = false;
+
+
+    /*
+     * Jika REQUIRE_SRC = TRUE
+     */
+    var REQUIRED_SRC = "popads";
+
+
+    /*
+     * FALLBACK
+     */
+    var SAFE_URL =
+        "/not-available.html";
+
+
+    /*
+     * BUTTON ID
+     */
+    var BUTTON_ID =
+        "goBtn";
+
+
+    /*
+    =====================================================
+    GET URL PARAMETER
+    =====================================================
+    */
+
+    function getParam(name) {
+
+        try {
+
+            var url =
+                new URL(
+                    window.location.href
+                );
+
+            return (
+                url.searchParams
+                    .get(name) || ""
+            ).toLowerCase();
+
+        }
+
+        catch (e) {
+
+            return "";
+
+        }
+
+    }
+
+
+    /*
+    =====================================================
+    SAFE REDIRECT
+    =====================================================
+    */
+
+    function goSafe(reason) {
+
+        try {
+
+            sessionStorage.setItem(
+                "blocked_reason",
+                reason
+            );
+
+        }
+
+        catch (e) {}
+
+
+        window.location.replace(
+            SAFE_URL
+        );
+
+    }
+
+
+    /*
+    =====================================================
+    SEARCH BOT KEYWORDS
+    =====================================================
+    */
+
+    function containsAny(
+        text,
+        list
+    ) {
+
+        for (
+            var i = 0;
+            i < list.length;
+            i++
+        ) {
+
+            if (
+                text.indexOf(
+                    list[i]
+                ) !== -1
+            ) {
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
+
+    /*
+    =====================================================
+    USER AGENT
+    =====================================================
+    */
+
+    var ua =
+        (
+            navigator.userAgent ||
+            ""
+        ).toLowerCase();
+
+
+    if (
+        !ua ||
+        ua.length < 15
+    ) {
+
+        return goSafe(
+            "ua_empty"
+        );
+
+    }
+
+
+    /*
+    =====================================================
+    BOT USER AGENT
+    =====================================================
+    */
+
+    var botKeywords = [
+
+        "bot",
+        "crawler",
+        "crawl",
+        "spider",
+        "slurp",
+
+        "headless",
+        "phantomjs",
+
+        "puppeteer",
+        "selenium",
+
+        "scrapy",
+
+        "curl",
+        "wget",
+
+        "httpclient",
+
+        "scanner",
+        "lighthouse",
+        "pagespeed"
+
+    ];
+
+
+    var previewBots = [
+
+        "facebookexternalhit",
+        "facebot",
+
+        "twitterbot",
+
+        "telegrambot",
+
+        "discordbot",
+
+        "whatsapp",
+
+        "skypeuripreview",
+
+        "linkedinbot",
+
+        "slackbot",
+
+        "pinterest"
+
+    ];
+
+
+    if (
+        containsAny(
+            ua,
+            botKeywords
+        )
+    ) {
+
+        return goSafe(
+            "ua_bot"
+        );
+
+    }
+
+
+    if (
+        containsAny(
+            ua,
+            previewBots
+        )
+    ) {
+
+        return goSafe(
+            "preview_bot"
+        );
+
+    }
+
+
+    /*
+    =====================================================
+    WEBDRIVER CHECK
+    =====================================================
+    */
+
+    if (
+        navigator.webdriver === true
+    ) {
+
+        return goSafe(
+            "webdriver"
+        );
+
+    }
+
+
+    /*
+    =====================================================
+    SCREEN CHECK
+    =====================================================
+    */
+
+    try {
+
+        if (
+            screen.width < 320 ||
+            screen.height < 320
+        ) {
+
+            return goSafe(
+                "screen_small"
+            );
+
+        }
+
+    }
+
+    catch (e) {}
+
+
+    /*
+    =====================================================
+    SOURCE CHECK
+    =====================================================
+    */
+
+    if (REQUIRE_SRC) {
+
+        var src =
+            getParam("src");
+
+
+        if (
+            src !== REQUIRED_SRC
+        ) {
+
+            return goSafe(
+                "bad_src"
+            );
+
+        }
+
+    }
+
+
+    /*
+    =====================================================
+    INTERACTION
+    =====================================================
+    */
+
+    var startTime =
+        Date.now();
+
+
+    var interacted =
+        false;
+
+
+    var button =
+        document.getElementById(
+            BUTTON_ID
+        );
+
+
+    var status =
+        document.getElementById(
+            "status"
+        );
+
+
+    /*
+    =====================================================
+    SET BUTTON
+    =====================================================
+    */
+
+    function setButton(
+        enabled
+    ) {
+
+        if (!button) {
+            return;
+        }
+
+
+        if (enabled) {
+
+            button.classList.remove(
+                "locked"
+            );
+
+            button.classList.add(
+                "ready"
+            );
+
+
+            button.innerHTML =
+                button.getAttribute(
+                    "data-text-ready"
+                )
+                ||
+                "CONTINUE";
+
+
+            if (status) {
+
+                status.innerText =
+                    "Ready. Tap Continue.";
+
+            }
+
+        }
+
+        else {
+
+            button.classList.add(
+                "locked"
+            );
+
+            button.classList.remove(
+                "ready"
+            );
+
+
+            button.innerHTML =
+                '<span class="spinner"></span>' +
+                (
+                    button.getAttribute(
+                        "data-text-lock"
+                    )
+                    ||
+                    "PLEASE WAIT…"
+                );
+
+        }
+
+    }
+
+
+    /*
+    =====================================================
+    MARK INTERACTION
+    =====================================================
+    */
+
+    function markInteraction() {
+
+        interacted =
+            true;
+
+
+        try {
+
+            sessionStorage.setItem(
+                "human_interaction",
+                "1"
+            );
+
+        }
+
+        catch (e) {}
+
+
+        unlockButton();
+
+    }
+
+
+    /*
+    =====================================================
+    UNLOCK
+    =====================================================
+    */
+
+    function unlockButton() {
+
+        var elapsed =
+            Date.now() -
+            startTime;
+
+
+        var timeOK =
+            elapsed >=
+            MIN_WAIT_MS;
+
+
+        var interactionOK =
+            !REQUIRE_INTERACTION ||
+            interacted;
+
+
+        if (
+            timeOK &&
+            interactionOK
+        ) {
+
+            setButton(true);
+
+        }
+
+    }
+
+
+    /*
+    =====================================================
+    EVENTS
+    =====================================================
+    */
+
+
+    /*
+     * MOBILE
+     */
+    window.addEventListener(
+        "touchstart",
+        markInteraction,
+        {
+            passive: true
+        }
+    );
+
+
+    /*
+     * DESKTOP + MOBILE
+     */
+    window.addEventListener(
+        "pointerdown",
+        markInteraction,
+        {
+            passive: true
+        }
+    );
+
+
+    /*
+     * CLICK
+     */
+    window.addEventListener(
+        "click",
+        markInteraction,
+        {
+            passive: true
+        }
+    );
+
+
+    /*
+     * SCROLL
+     */
+    window.addEventListener(
+        "scroll",
+        function () {
+
+            if (
+                window.scrollY > 5
+            ) {
+
+                markInteraction();
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /*
+    =====================================================
+    INITIAL STATE
+    =====================================================
+    */
+
+    setButton(false);
+
+
+    /*
+    =====================================================
+    TIMER
+    =====================================================
+    */
+
+    var interval =
+        setInterval(
+            function () {
+
+                unlockButton();
+
+            },
+            250
+        );
+
+
+    setTimeout(
+        function () {
+
+            clearInterval(
+                interval
+            );
+
+        },
+        MIN_WAIT_MS + 10000
+    );
+
+
+    /*
+    =====================================================
+    REDIRECT
+    =====================================================
+    */
+
+    window.safeRedirect =
+        function () {
+
+            var elapsed =
+                Date.now() -
+                startTime;
+
+
+            /*
+             * BELUM CUKUP WAKTU
+             */
+            if (
+                elapsed <
+                MIN_WAIT_MS
+            ) {
+
+                return;
+
+            }
+
+
+            /*
+             * BELUM ADA INTERAKSI
+             */
+            if (
+                REQUIRE_INTERACTION &&
+                !interacted
+            ) {
+
+                return;
+
+            }
+
+
+            /*
+             * REDIRECT ADSTERRA
+             */
+            window.location.href =
+                ADSTERRA_URL;
+
+        };
+
+
+    /*
+    =====================================================
+    BUTTON CLICK
+    =====================================================
+    */
+
+    if (button) {
+
+        button.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                window.safeRedirect();
+
+            }
+        );
+
+    }
+
+
+})();
+
+</script>
+
+
+</body>
+
+</html>
+```
