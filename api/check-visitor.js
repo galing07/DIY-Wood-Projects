@@ -5,6 +5,34 @@ export default async function handler(req, res) {
     "application/json; charset=utf-8"
   );
 
+  /*
+   * ==========================================
+   * CONFIGURATION
+   * ==========================================
+   *
+   * Vercel Environment Variables:
+   *
+   * IPINFO_TOKEN=YOUR_IPINFO_TOKEN
+   * TARGET_COUNTRY=US
+   *
+   * TARGET_COUNTRY can be:
+   * US
+   * CA
+   * GB
+   * AU
+   * etc.
+   */
+
+  const TARGET_COUNTRY = String(
+    process.env.TARGET_COUNTRY || "US"
+  ).trim().toUpperCase();
+
+  /*
+   * ==========================================
+   * GET VISITOR INFORMATION
+   * ==========================================
+   */
+
   const ip = getClientIp(req);
 
   const userAgent = String(
@@ -12,9 +40,14 @@ export default async function handler(req, res) {
   ).toLowerCase();
 
   /*
-   * Search/social crawlers.
-   * Allowed so SEO and social previews continue working.
+   * ==========================================
+   * ALLOWED SEARCH / SOCIAL CRAWLERS
+   * ==========================================
+   *
+   * These are allowed so SEO and social previews
+   * are not unnecessarily broken.
    */
+
   const allowedCrawlers = [
     "googlebot",
     "bingbot",
@@ -37,13 +70,17 @@ export default async function handler(req, res) {
   ) {
     return res.status(200).json({
       allowed: true,
-      reason: "verified_crawler"
+      reason: "verified_crawler",
+      country: null
     });
   }
 
   /*
-   * Browser automation / command-line detection.
+   * ==========================================
+   * BOT / AUTOMATION DETECTION
+   * ==========================================
    */
+
   const automation = [
     "headlesschrome",
     "headless",
@@ -72,52 +109,55 @@ export default async function handler(req, res) {
   ) {
     return res.status(200).json({
       allowed: false,
-      reason: "browser_automation"
+      reason: "browser_automation",
+      country: null
     });
   }
 
   /*
-   * No visitor IP.
+   * ==========================================
+   * IP CHECK
+   * ==========================================
    */
+
   if (!ip) {
     return res.status(200).json({
       allowed: false,
-      reason: "missing_ip"
+      reason: "missing_ip",
+      country: null
     });
   }
 
   /*
-   * IPinfo token.
-   *
-   * Vercel:
-   * Settings
-   * -> Environment Variables
-   *
-   * Name:
-   * IPINFO_TOKEN
+   * ==========================================
+   * IPINFO TOKEN
+   * ==========================================
    */
+
   const token = process.env.IPINFO_TOKEN;
 
   /*
-   * Token missing.
+   * If token is missing, fail-open.
    *
-   * Fail-open so a configuration mistake does not
-   * accidentally take the whole website offline.
+   * This prevents accidentally blocking the
+   * entire website because of configuration.
    */
+
   if (!token) {
     return res.status(200).json({
       allowed: true,
-      reason: "ipinfo_token_missing"
+      reason: "ipinfo_token_missing",
+      country: null
     });
   }
 
+  /*
+   * ==========================================
+   * CALL IPINFO
+   * ==========================================
+   */
+
   try {
-    /*
-     * IPinfo API.
-     *
-     * Privacy fields are returned on plans that include
-     * Privacy Detection.
-     */
     const apiUrl =
       "https://ipinfo.io/" +
       encodeURIComponent(ip) +
@@ -131,63 +171,114 @@ export default async function handler(req, res) {
       }
     });
 
+    /*
+     * IPinfo API error.
+     *
+     * Fail-open so temporary provider failures
+     * do not cause a total website outage.
+     */
+
     if (!response.ok) {
       return res.status(200).json({
         allowed: true,
-        reason: "ipinfo_provider_error"
+        reason: "ipinfo_provider_error",
+        country: null
       });
     }
 
     const data = await response.json();
 
     /*
-     * IPinfo Privacy Detection.
-     *
-     * Depending on IPinfo response/plan, privacy data
-     * can appear under:
-     *
-     * data.privacy
-     * data.anonymous
+     * ==========================================
+     * COUNTRY / GEO
+     * ==========================================
      */
+
+    const country = String(
+      data.country || ""
+    )
+      .trim()
+      .toUpperCase();
+
+    const geoBlocked =
+      country !== TARGET_COUNTRY;
+
+    /*
+     * ==========================================
+     * IPINFO PRIVACY DATA
+     * ==========================================
+     */
+
     const privacy =
       data.privacy ||
       data.anonymous ||
       {};
 
+    /*
+     * VPN
+     */
+
     const isVpn =
       privacy.is_vpn === true;
 
+    /*
+     * Proxy
+     */
+
     const isProxy =
       privacy.is_proxy === true;
+
+    /*
+     * TOR
+     */
 
     const isTor =
       privacy.is_tor === true ||
       privacy.tor === true;
 
+    /*
+     * Relay
+     */
+
     const isRelay =
       privacy.is_relay === true ||
       privacy.relay === true;
+
+    /*
+     * Hosting / Datacenter
+     */
 
     const isHosting =
       privacy.is_hosting === true ||
       data.is_hosting === true ||
       data.as?.type === "hosting";
 
+    /*
+     * Residential Proxy
+     */
+
     const isResidentialProxy =
       privacy.is_res_proxy === true ||
       privacy.is_residential_proxy === true;
 
     /*
-     * BLOCK:
+     * ==========================================
+     * FINAL BLOCK DECISION
+     * ==========================================
      *
-     * VPN
-     * Proxy
-     * Tor
-     * Hosting / Datacenter
-     * Residential Proxy
-     * Relay
+     * BLOCK if:
+     *
+     * 1. Wrong country
+     * 2. VPN
+     * 3. Proxy
+     * 4. TOR
+     * 5. Relay
+     * 6. Hosting / Datacenter
+     * 7. Residential Proxy
      */
+
     const blocked =
+      geoBlocked ||
       isVpn ||
       isProxy ||
       isTor ||
@@ -195,9 +286,22 @@ export default async function handler(req, res) {
       isHosting ||
       isResidentialProxy;
 
+    /*
+     * ==========================================
+     * BLOCK REASON
+     * ==========================================
+     *
+     * GEO is checked first so visitors outside
+     * the target country receive:
+     *
+     * geo_not_allowed
+     */
+
     let reason = "clean";
 
-    if (isVpn) {
+    if (geoBlocked) {
+      reason = "geo_not_allowed";
+    } else if (isVpn) {
       reason = "vpn";
     } else if (isProxy) {
       reason = "proxy";
@@ -211,16 +315,27 @@ export default async function handler(req, res) {
       reason = "relay";
     }
 
+    /*
+     * ==========================================
+     * RESPONSE
+     * ==========================================
+     */
+
     return res.status(200).json({
       allowed: !blocked,
       reason,
 
+      target_country: TARGET_COUNTRY,
+
       ip: data.ip || ip,
 
-      country:
-        data.country ||
-        data.country_code ||
-        null,
+      country: country || null,
+
+      region: data.region || null,
+
+      city: data.city || null,
+
+      timezone: data.timezone || null,
 
       asn:
         data.as?.asn ||
@@ -238,22 +353,33 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     /*
-     * IPinfo temporary error.
+     * ==========================================
+     * IPINFO EXCEPTION
+     * ==========================================
      *
-     * Do not block legitimate traffic because
-     * the external provider is temporarily unavailable.
+     * Keep website available if IPinfo has
+     * a temporary network/API problem.
      */
+
     return res.status(200).json({
       allowed: true,
-      reason: "ipinfo_provider_exception"
+      reason: "ipinfo_provider_exception",
+      target_country: TARGET_COUNTRY,
+      country: null
     });
   }
 }
 
 
 /*
- * Get visitor IP behind Vercel.
+ * ==========================================
+ * GET CLIENT IP
+ * ==========================================
+ *
+ * Vercel runs behind a proxy, so first check
+ * x-forwarded-for.
  */
+
 function getClientIp(req) {
   const forwarded =
     req.headers["x-forwarded-for"];
